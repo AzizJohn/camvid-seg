@@ -1,6 +1,7 @@
 # data and experiment artifacts - never commit these
 data/
 outputs/
+notes/
 checkpoints/
 wandb/
 
@@ -9,6 +10,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+env/
 
 # IDE
 .idea/
