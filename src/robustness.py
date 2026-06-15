@@ -28,6 +28,19 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+
+# --- NumPy 2.0 compatibility shim --------------------------------------
+# The imagecorruptions package (used below for fog/blur/noise) predates
+# NumPy 2.0 and still references aliases that 2.0 removed (np.float_,
+# np.int_, etc.). Re-point them to their canonical types so the legacy
+# library runs unchanged on a modern NumPy. Harmless on older NumPy too.
+for _alias, _target in (("float_", "float64"), ("int_", "int64"),
+                        ("bool_", "bool_"), ("object_", "object_"),
+                        ("complex_", "complex128")):
+    if not hasattr(np, _alias) and hasattr(np, _target):
+        setattr(np, _alias, getattr(np, _target))
+# -----------------------------------------------------------------------
+
 import torch
 import cv2
 from torch.utils.data import Dataset, DataLoader
