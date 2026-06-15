@@ -5,7 +5,7 @@ import time
 GB_TO_ALLOCATE = 8
 
 # 2. Convert GB to bytes (1 GB = 1024^3 bytes)
-bytes_to_allocate = int(GB_TO_ALLOCATE * (1024 ** 5))
+bytes_to_allocate = int(GB_TO_ALLOCATE * (1024 ** 3))
 elements_to_allocate = bytes_to_allocate // 4  # Float32 takes 4 bytes
 
 print(f"Attempting to allocate {GB_TO_ALLOCATE} GB of GPU memory...")
