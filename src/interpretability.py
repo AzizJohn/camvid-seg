@@ -62,14 +62,25 @@ def unet_cam(model, x):
 
 
 def segformer_cam(model, x):
-    """Activation magnitude of SegFormer's deepest encoder stage."""
-    enc = model.net.segformer.encoder
-    out = enc(x, output_hidden_states=True)
-    deep = out.hidden_states[-1]      # (B, C, h, w) for last stage
-    if deep.dim() == 3:               # some versions return (B, N, C)
+    """Activation magnitude of SegFormer's deepest encoder stage.
+
+    We request hidden states from the full model, which returns 4D feature
+    maps (B, C, h, w) for each stage - avoiding any assumption that the
+    token count is a perfect square (CamVid maps are non-square, e.g. 12x15).
+    """
+    out = model.net(pixel_values=x, output_hidden_states=True)
+    hs = getattr(out, "hidden_states", None)
+    if not hs:
+        raise RuntimeError("SegFormer did not return hidden_states")
+    deep = hs[-1]                     # deepest stage
+
+    if deep.dim() == 3:
+        # Fallback only: (B, N, C). Recover h,w from the input stride (/32
+        # at the last stage) rather than assuming a square.
         B, N, C = deep.shape
-        s = int(N ** 0.5)
-        deep = deep.transpose(1, 2).reshape(B, C, s, s)
+        h = max(1, x.shape[-2] // 32)
+        w = max(1, N // h)
+        deep = deep.transpose(1, 2).reshape(B, C, h, w)
     cam = deep.pow(2).sum(1).sqrt()[0]
     cam = F.interpolate(cam[None, None], size=x.shape[-2:],
                         mode="bilinear", align_corners=False)[0, 0]
