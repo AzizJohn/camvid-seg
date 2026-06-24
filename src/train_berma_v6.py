@@ -2,7 +2,7 @@ import torch
 import time
 
 # 1. Define how much VRAM you want to test (in gigabytes)
-GB_TO_ALLOCATE = 5
+GB_TO_ALLOCATE = 6
 
 # 2. Convert GB to bytes (1 GB = 1024^3 bytes)
 bytes_to_allocate = int(GB_TO_ALLOCATE * (1024 ** 3))
