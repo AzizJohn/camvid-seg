@@ -40,6 +40,8 @@ from losses import CombinedLoss, load_class_weights
 from metrics import SegMetrics, format_per_class
 from models import build_model, count_parameters
 
+from losses import CombinedLoss, CombinedFocalLoss, load_class_weights
+
 
 def read_subset(path):
     if path is None:
@@ -94,6 +96,11 @@ def main() -> None:
                    help="path to a train_xx.txt file (data-efficiency runs)")
     p.add_argument("--ce-weight", type=float, default=1.0)
     p.add_argument("--dice-weight", type=float, default=1.0)
+    p.add_argument("--loss", default="ce_dice",
+                   choices=["ce_dice", "focal_dice"],
+                   help="loss type; focal_dice swaps CE for focal loss")
+    p.add_argument("--gamma", type=float, default=2.0,
+                   help="focal loss gamma (only used with --loss focal_dice)")
     p.add_argument("--no-class-weights", action="store_true",
                    help="disable median-frequency CE weighting")
     p.add_argument("--no-amp", action="store_true",
@@ -141,10 +148,17 @@ def main() -> None:
 
     class_weights = None if (args.no_class_weights or args.overfit > 0) \
         else load_class_weights(device=device)
-    criterion = CombinedLoss(
-        class_weights=class_weights,
-        ce_weight=args.ce_weight, dice_weight=args.dice_weight,
-    )
+
+    if args.loss == "focal_dice":
+        criterion = CombinedFocalLoss(
+            class_weights=class_weights, gamma=args.gamma,
+            focal_weight=args.ce_weight, dice_weight=args.dice_weight,
+        )
+    else:
+        criterion = CombinedLoss(
+            class_weights=class_weights,
+            ce_weight=args.ce_weight, dice_weight=args.dice_weight,
+        )
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=args.lr, weight_decay=args.weight_decay
     )
