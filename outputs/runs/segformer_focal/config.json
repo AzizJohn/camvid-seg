@@ -1,0 +1,22 @@
+{
+  "model": "segformer",
+  "root": "data/CamVid",
+  "epochs": 120,
+  "batch_size": 6,
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "height": 384,
+  "width": 480,
+  "workers": 8,
+  "subset": null,
+  "ce_weight": 1.0,
+  "dice_weight": 1.0,
+  "loss": "focal_dice",
+  "gamma": 2.0,
+  "no_class_weights": false,
+  "no_amp": false,
+  "seed": 42,
+  "run_name": "segformer_focal",
+  "out": "outputs/runs",
+  "overfit": 0
+}
