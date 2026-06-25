@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Methodology}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Dataset}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Models}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Training Protocol}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Evaluation}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Implementation}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Code Structure}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Training Core}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Shared Training Script}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Evaluation and Analysis}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Evaluation and Results}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Accuracy}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Data Efficiency}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Robustness to Corruptions}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Boundary Quality}{7}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Cross-Dataset Generalization}{8}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Test-Time Augmentation}{9}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Qualitative Comparison}{9}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Discussion and Limitations}{10}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}%

@@ -1,0 +1,56 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{4}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dataset}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Models}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Training Protocol}{4}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Evaluation}{5}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Implementation}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Code Structure}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main components of the project.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:structure}{{1}{5}{Main components of the project}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Core}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Shared Training Script}{6}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation and Analysis}{6}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Evaluation and Results}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Accuracy}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Head-to-head at 100\% data (validation, three seeds).}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:headline}{{2}{6}{Head-to-head at 100\% data (validation, three seeds)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Efficiency}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-class IoU at 100\% data (validation, single seed). $\Delta $ is SegFormer minus U-Net.}}{7}{table.3}\protected@file@percent }
+\newlabel{tab:perclass}{{3}{7}{Per-class IoU at 100\% data (validation, single seed). $\Delta $ is SegFormer minus U-Net}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data efficiency. SegFormer dominates U-Net at every training-set size and, at 25\% data, nearly matches U-Net trained on 100\%.}}{7}{figure.1}\protected@file@percent }
+\newlabel{fig:dataeff}{{1}{7}{Data efficiency. SegFormer dominates U-Net at every training-set size and, at 25\% data, nearly matches U-Net trained on 100\%}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Robustness to Corruptions}{7}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Robustness to test-time corruptions. SegFormer (orange) degrades more gracefully than U-Net (blue); the gap is extreme for Gaussian noise and negligible for brightness.}}{8}{figure.2}\protected@file@percent }
+\newlabel{fig:robust}{{2}{8}{Robustness to test-time corruptions. SegFormer (orange) degrades more gracefully than U-Net (blue); the gap is extreme for Gaussian noise and negligible for brightness}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Boundary Quality}{8}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Dataset Generalization}{8}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-dataset generalization: CamVid-trained models evaluated zero-shot on Cityscapes validation (labels remapped).}}{8}{table.4}\protected@file@percent }
+\newlabel{tab:cross}{{4}{8}{Cross-dataset generalization: CamVid-trained models evaluated zero-shot on Cityscapes validation (labels remapped)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Test-Time Augmentation}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Zero-shot predictions on Cityscapes (CamVid-trained models). U-Net's predictions fragment on the unfamiliar domain while SegFormer remains comparatively coherent.}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:cross}{{3}{9}{Zero-shot predictions on Cityscapes (CamVid-trained models). U-Net's predictions fragment on the unfamiliar domain while SegFormer remains comparatively coherent}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Qualitative Comparison}{9}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion and Limitations}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Input, ground truth, U-Net and SegFormer on the most-disagreeing validation frames.}}{12}{figure.4}\protected@file@percent }
+\newlabel{fig:qual}{{4}{12}{Input, ground truth, U-Net and SegFormer on the most-disagreeing validation frames}{figure.4}{}}
+\gdef \@abspage@last{12}
