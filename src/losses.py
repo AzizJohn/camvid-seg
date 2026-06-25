@@ -97,3 +97,55 @@ class CombinedLoss(nn.Module):
             self.ce_weight * self.ce(logits, target)
             + self.dice_weight * self.dice(logits, target)
         )
+
+class FocalLoss(nn.Module):
+    """Multi-class focal loss (Lin et al., 2017), ignoring void.
+
+    The (1 - p_t)^gamma factor down-weights well-classified pixels so the
+    gradient concentrates on hard pixels (thin-structure boundaries). alpha
+    is the per-class weight vector (same role as the median-frequency
+    weights in the CE baseline); gamma=0 recovers weighted cross-entropy.
+    """
+
+    def __init__(self, alpha=None, gamma: float = 2.0, ignore_index: int = VOID_INDEX):
+        super().__init__()
+        self.gamma = gamma
+        self.ignore_index = ignore_index
+        self.alpha = alpha  # (NUM_CLASSES,) tensor or None
+
+    def forward(self, logits, target):
+        ce = F.cross_entropy(
+            logits, target, weight=self.alpha,
+            ignore_index=self.ignore_index, reduction="none",
+        )  # (N, H, W)
+        with torch.no_grad():
+            logp = F.log_softmax(logits, dim=1)
+            valid = target != self.ignore_index
+            safe_t = target.clone()
+            safe_t[~valid] = 0
+            pt = logp.gather(1, safe_t.unsqueeze(1)).squeeze(1).exp()
+            focal_factor = (1.0 - pt).clamp(min=0).pow(self.gamma)
+            focal_factor[~valid] = 0.0
+        loss = focal_factor * ce
+        return loss.sum() / valid.sum().clamp(min=1)
+
+
+class CombinedFocalLoss(nn.Module):
+    """focal_weight * Focal + dice_weight * Dice, both ignoring void.
+
+    Mirrors CombinedLoss but swaps weighted-CE for weighted-Focal, so a focal
+    run differs from the baseline only in that one term.
+    """
+
+    def __init__(self, class_weights=None, gamma: float = 2.0,
+                 focal_weight: float = 1.0, dice_weight: float = 1.0,
+                 ignore_index: int = VOID_INDEX):
+        super().__init__()
+        self.focal = FocalLoss(alpha=class_weights, gamma=gamma, ignore_index=ignore_index)
+        self.dice = DiceLoss(ignore_index=ignore_index)
+        self.focal_weight = focal_weight
+        self.dice_weight = dice_weight
+
+    def forward(self, logits, target):
+        return (self.focal_weight * self.focal(logits, target)
+                + self.dice_weight * self.dice(logits, target))
