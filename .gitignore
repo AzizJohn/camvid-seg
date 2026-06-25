@@ -1,7 +1,7 @@
 # data and experiment artifacts - never commit these
 data/
-outputs/
-notes/
+outputs/**/*.pt
+outputs/**/last.pt
 checkpoints/
 wandb/
 
