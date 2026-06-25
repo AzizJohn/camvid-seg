@@ -61,7 +61,7 @@ on each machine.
 ```bash
 git clone <this-repo> camvid-seg && cd camvid-seg
 conda create -n camvid-seg python=3.12 -y && conda activate camvid-seg
-pip install torch torchvision          # matched to your CUDA (see note below)
+pip install torch torchvision          
 pip install -r requirements.txt
 bash scripts/download_camvid.sh        # verifies 367/101/233 split
 ```
